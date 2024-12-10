@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger King</title>
+    <style>
+        /* Basic styling for the body and text */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+        }
+
+        /* Styling for the header */
+        header {
+            background-color: #5e35b1;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Navigation styling */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline; /* Display list items in a row */
+            margin: 0 15px;
+        }
+
+        nav a {
+            text-decoration: none; /* Remove underline from links */
+            color: white; /* Link color */
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline; /* Underline on hover */
+            color: #d1c4e9; /* Lighter color on hover */
+        }
+
+        .hidden {
+            display: none; /* Class to hide elements */
+        }
+
+        /* Main content styling */
+        main {
+            padding: 20px;
+            text-align: center;
+            background-color: #222;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+            max-width: 600px; /* Maximum width of main content */
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Button styling */
+        button {
+            background-color: #5e35b1;
+            color: white;
+            border: none; /* No border */
+            padding: 10px 15px;
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Change cursor on hover */
+        }
+
+        button:hover {
+            background-color: #7e57c2; /* Change background on hover */
+        }
+
+        /* Testimonial styling */
+        .testimonial {
+            font-style: italic; /* Italic text */
+            margin: 20px 0;
+        }
+
+        .explore-menu {
+            margin-top: 20px; /* Margin for button area */
+        }
+
+        .form-toggle {
+            margin-top: 20px;
+            cursor: pointer; /* Pointer cursor for clickable text */
+            color: #5e35b1;
+        }
+
+        /* Toast notification styling */
+        #toast {
+            position: fixed; /* Fixed position at the bottom */
+            bottom: 20px;
+            right: 20px;
+            background-color: #5e35b1;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            transition: opacity 0.5s; /* Fade effect */
+            opacity: 0; /* Initially hidden */
+        }
+
+        #toast.show {
+            opacity: 1; /* Show toast */
+        }
+
+        @media (max-width: 600px) {
+            nav ul li {
+                display: block; /* Stack links vertically on small screens */
+                margin: 10px 0;
+            }
+        }
+
+        /* Social links styling */
+        .social-links {
+            text-align: left; /* Align social links to the left */
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white; /* Link color */
+            margin-right: 15px;
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        .social-links a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <h1>Welcome to Burger King</h1>
+        <nav>
+            <ul role="navigation">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('menu')">Menu</a></li>
+                <li><a href="#" onclick="showPage('auth')">Login / Register</a></li>
+                <li><a href="#" onclick="showPage('promotions')">Promotions</a></li>
+                <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                <li><a href="#" onclick="showPage('feedback')">Feedback</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#" onclick="showPage('cart')">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home">
+        <main>
+            <h2>Featured Items</h2>
+            <!-- Featured items with Add to Cart buttons -->
+            <p><strong>Whopper</strong> - $12 <button onclick="addToCart('Whopper')">Add to Cart</button></p>
+            <p><strong>Chicken Fries</strong> - $5 <button onclick="addToCart('Chicken Fries')">Add to Cart</button></p>
+            <p><strong>Ice Cream Sundae</strong> - $3 <button onclick="addToCart('Ice Cream Sundae')">Add to Cart</button></p>
+
+            <h3>What Our Customers Say</h3>
+            <div class="testimonial">"Best burgers in town! Always fresh and delicious!" - John D.</div>
+            <div class="testimonial">"I love the variety of options. Never get bored with my meals!" - Sarah W.</div>
+
+            <h3>Ready to Order?</h3>
+            <div class="explore-menu">
+                <button onclick="showPage('menu')">Explore Our Menu</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Menu Page -->
+    <div id="menu" class="hidden">
+        <main>
+            <h2>Our Delicious Menu</h2>
+            <p>Check out our amazing deals!</p>
+            <ul>
+                <!-- Menu items with Add to Cart buttons -->
+                <li><strong>Whopper</strong> - $12 <button onclick="addToCart('Whopper')">Add to Cart</button></li>
+                <li><strong>Chicken Fries</strong> - $5 <button onclick="addToCart('Chicken Fries')">Add to Cart</button></li>
+                <li><strong>Cheeseburger</strong> - $8 <button onclick="addToCart('Cheeseburger')">Add to Cart</button></li>
+                <li><strong>Pepperoni Pizza</strong> - $15 <button onclick="addToCart('Pepperoni Pizza')">Add to Cart</button></li>
+                <li><strong>Veggie Pizza</strong> - $14 <button onclick="addToCart('Veggie Pizza')">Add to Cart</button></li>
+                <li><strong>Caesar Salad</strong> - $7 <button onclick="addToCart('Caesar Salad')">Add to Cart</button></li>
+                <li><strong>Garden Salad</strong> - $6 <button onclick="addToCart('Garden Salad')">Add to Cart</button></li>
+                <li><strong>7Up</strong> - $2 <button onclick="addToCart('7Up')">Add to Cart</button></li>
+                <li><strong>Cola</strong> - $2 <button onclick="addToCart('Cola')">Add to Cart</button></li>
+                <li><strong>Water</strong> - $1 <button onclick="addToCart('Water')">Add to Cart</button></li>
+            </ul>
+        </main>
+    </div>
+
+    <!-- Authentication Page (Login/Register) -->
+    <div id="auth" class="hidden">
+        <main>
+            <h2 id="form-title">Log In</h2>
+            <form id="auth-form">
+                <input type="text" placeholder="Username" required><br>
+                <input type="password" placeholder="Password" required><br>
+                <button type="submit">Log In</button>
+            </form>
+            <div class="form-toggle" onclick="toggleForm()">Don't have an account? Register</div>
+        </main>
+    </div>
+
+    <!-- Promotions Page -->
+    <div id="promotions" class="hidden">
+        <main>
+            <h2>Current Promotions</h2>
+			<p>30%off on the first order!!! use code: First30</p>
+            <p>Get 20% off on all orders this weekend!</p>
+        </main>
+    </div>
+
+    <!-- About Us Page -->
+    <div id="about" class="hidden">
+        <main>
+            <h2>About Burger King</h2>
+            <p>We are committed to serving the best fast food in the industry.</p>
+            <h2>Our Mission</h2>
+            <p>At Burger King, our mission is to connect food lovers with the best local dining experiences. We strive to provide a seamless online platform for discovering and enjoying delicious meals.</p>
+            <h3>What We Offer</h3>
+            <p>Our portal offers an extensive menu selection, easy online ordering, and exclusive promotions. Whether you're looking for a quick bite or a fine dining experience, we have something for everyone.</p>
+        </main>
+    </div>
+
+    <!-- Feedback Page -->
+    <div id="feedback" class="hidden">
+        <main>
+            <h2>Feedback</h2>
+            <p>We value your feedback! Please share your complaints or suggestions below:</p>
+            <form id="feedback-form">
+                <textarea placeholder="Your feedback..." required></textarea><br>
+                <button type="submit">Submit</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact" class="hidden">
+        <main>
+            <h2>Get in Touch</h2>
+            <p>Email us at: contact@burgerking.com</p>
+			<p>Khalid: 2240006569@iau.edu.sa</p>
+			<p>Abdualrahman: 2240006085@iau.edu.sa</p>
+			<p>Ibrahim: 2240006317@iau.edu.sa</p>
+			<p>Jeham: 2240002954@iau.edu.sa</p>
+            <div class="social-links">
+                <!-- Social media links -->
+                <a href="https://wa.me/yourwhatsappnumber" target="_blank">WhatsApp</a>
+                <a href="https://www.tiktok.com/@yourtiktokusername" target="_blank">TikTok</a>
+                <a href="https://www.instagram.com/yourinstagramusername" target="_blank">Instagram</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Shopping Cart Page -->
+    <div id="cart" class="hidden">
+        <main>
+            <h2>Your Cart</h2>
+            <p id="cart-items">Your cart is empty.</p>
+            <button id="order-button" class="hidden" onclick="placeOrder()">Order Now</button>
+        </main>
+    </div>
+
+    <div id="toast" class="hidden">Item added to cart!</div>
+
+    <footer>
+        <p>&copy; 2024 Burger King</p>
+    </footer>
+
+    <script>
+        let cartCount = 0; // Initialize cart item count
+        let cartItems = []; // Initialize array to hold cart items
+        let isRegistering = false; // Track if user is registering
+
+        // Function to show the selected page
+        function showPage(pageId) {
+            document.querySelectorAll('div[id]').forEach(div => div.classList.add('hidden')); // Hide all pages
+            document.getElementById(pageId).classList.remove('hidden'); // Show selected page
+        }
+
+        // Function to add items to the cart
+        function addToCart(item) {
+            cartCount++; // Increment cart count
+            cartItems.push(item); // Add item to cart
+            document.getElementById('cart-count').innerText = cartCount; // Update cart display
+            updateCartDisplay(); // Update cart items display
+            showToast(`${item} added to cart!`); // Show toast notification
+        }
+
+        // Function to show toast notifications
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message; // Set toast message
+            toast.classList.remove('hidden'); // Show toast
+            setTimeout(() => toast.classList.add('hidden'), 3000); // Hide after 3 seconds
+        }
+
+        // Function to update cart display
+        function updateCartDisplay() {
+            const cartDisplay = document.getElementById('cart-items');
+            const orderButton = document.getElementById('order-button');
+            if (cartCount === 0) {
+                cartDisplay.innerText = "Your cart is empty."; // No items in cart
+                orderButton.classList.add('hidden'); // Hide order button
+            } else {
+                cartDisplay.innerText = `You have ${cartCount} item(s) in your cart: ${cartItems.join(', ')}.`; // Show items in cart
+                orderButton.classList.remove('hidden'); // Show order button
+            }
+        }
+
+        // Function to place an order
+        function placeOrder() {
+            alert(`Your order for ${cartItems.join(', ')} has been placed!`); // Alert user of order
+            cartCount = 0; // Reset cart count
+            cartItems = []; // Clear cart items
+            document.getElementById('cart-count').innerText = cartCount; // Update cart display
+            updateCartDisplay(); // Update cart items display
+            showPage('home'); // Redirect to home page
+        }
+
+        // Function to toggle between login and registration forms
+        function toggleForm() {
+            const title = document.getElementById('form-title');
+            const form = document.getElementById('auth-form');
+
+            isRegistering = !isRegistering; // Toggle registration state
+
+            if (isRegistering) {
+                title.innerText = "Register"; // Change title to Register
+                form.innerHTML = `
+                    <input type="text" placeholder="Name" required><br>
+                    <input type="text" placeholder="Username" required><br>
+                    <input type="password" placeholder="Password" required><br>
+                    <button type="submit">Register</button>
+                `; // Update form for registration
+                document.querySelector('.form-toggle').innerText = "Already have an account? Log In"; // Change toggle text
+            } else {
+                title.innerText = "Log In"; // Change title to Log In
+                form.innerHTML = `
+                    <input type="text" placeholder="Username" required><br>
+                    <input type="password" placeholder="Password" required><br>
+                    <button type="submit">Log In</button>
+                `; // Update form for login
+                document.querySelector('.form-toggle').innerText = "Don't have an account? Register"; // Change toggle text
+            }
+        }
+
+        // Show the home page by default
+        showPage('home');
+    </script>
+
+</body>
+
+</html>
